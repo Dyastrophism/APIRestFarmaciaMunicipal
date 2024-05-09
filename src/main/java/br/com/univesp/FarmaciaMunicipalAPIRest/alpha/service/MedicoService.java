@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MedicoService {
 
-    private MedicoRepository medicoRepository;
+    private final MedicoRepository medicoRepository;
 
     public Page<DadosListagemMedicoDTO> listarMedicosAtivos(Pageable page) {
         return this.medicoRepository.findAllByAtivoTrue(page).map(DadosListagemMedicoDTO::new);
