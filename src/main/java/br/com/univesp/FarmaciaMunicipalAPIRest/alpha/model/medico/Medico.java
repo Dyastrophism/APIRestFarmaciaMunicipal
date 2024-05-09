@@ -10,6 +10,8 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Medico {
 
     @Id
