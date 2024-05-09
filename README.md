@@ -21,18 +21,17 @@ These instructions will get you a copy of the project up and running on your loc
 - PostgreSQL
 - Postman or any other API testing tool
 - An IDE (IntelliJ IDEA, Eclipse, etc.)
-- Spring Boot
 
 ### Installing
 
 1. Clone the repository:
-git clone https://github.com/Dyastrophism/FarmaciaMunicipalAPIRest.git
+```git clone https://github.com/Dyastrophism/FarmaciaMunicipalAPIRest.git```
 2. Navigate into the project directory:
-cd FarmaciaMunicipalAPIRest
+```cd FarmaciaMunicipalAPIRest```
 3. Install the dependencies:
-mvn install
+   ```mvn install```
 4. Run the application:
-mvn spring-boot:run
+```mvn spring-boot:run```
 
 ## Built With
 
