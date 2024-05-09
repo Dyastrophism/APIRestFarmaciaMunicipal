@@ -1,12 +1,13 @@
 package br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.medico;
 
-import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.Endereco.Endereco;
+import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.dto.medicoDTO.DadosAtaulizarMedicoDTO;
+import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.endereco.Endereco;
 import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.dto.medicoDTO.DadosCadastroMedicoDTO;
 import jakarta.persistence.*;
 import lombok.*;
 @Table
 @Entity(name = "medico")
-@Data
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Medico {
@@ -22,6 +23,7 @@ public class Medico {
     private EspecialidadeMedicoEnum especialidadeMedico;
     @Embedded
     private Endereco enderecoMedico;
+    private boolean ativo;
 
     public Medico(DadosCadastroMedicoDTO dadosCadastroMedicoDTO) {
         this.nome = dadosCadastroMedicoDTO.nome();
@@ -30,5 +32,21 @@ public class Medico {
         this.telefone = dadosCadastroMedicoDTO.telefone();
         this.especialidadeMedico = dadosCadastroMedicoDTO.especialidadeMedicoEnum();
         this.enderecoMedico = new Endereco(dadosCadastroMedicoDTO.endereco());
+    }
+
+    public void desativar() {
+        this.ativo = false;
+    }
+
+    public void atualizarInformacoes(DadosAtaulizarMedicoDTO dadosAtualizarMedicoDTO) {
+        if (dadosAtualizarMedicoDTO.nome() != null) {
+            this.nome = dadosAtualizarMedicoDTO.nome();
+        }
+        if (dadosAtualizarMedicoDTO.telefone() != null) {
+            this.telefone = dadosAtualizarMedicoDTO.telefone();
+        }
+        if (dadosAtualizarMedicoDTO.endereco() != null) {
+            this.enderecoMedico.atualizarInformacoesEndereco(dadosAtualizarMedicoDTO.endereco());
+        }
     }
 }

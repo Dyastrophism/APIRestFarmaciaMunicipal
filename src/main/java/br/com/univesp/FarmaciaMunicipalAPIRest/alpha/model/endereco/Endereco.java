@@ -1,4 +1,4 @@
-package br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.Endereco;
+package br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.endereco;
 
 import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.dto.enderecoDTO.DadosEnderecoDTO;
 import jakarta.persistence.Embeddable;
@@ -26,5 +26,29 @@ public class Endereco {
         this.complemento = dadosEnderecoDTO.complemento();
         this.cidade = dadosEnderecoDTO.cidade();
         this.uf = dadosEnderecoDTO.uf();
+    }
+
+    public void atualizarInformacoesEndereco(DadosEnderecoDTO endereco) {
+        if (endereco.logradouro() != null) {
+            this.logradouro = endereco.logradouro();
+        }
+        if (endereco.bairro() != null) {
+            this.bairro = endereco.bairro();
+        }
+        if (endereco.cep() != null) {
+            this.cep = endereco.cep();
+        }
+        if (endereco.numero() != null) {
+            this.numero = endereco.numero();
+        }
+        if (endereco.complemento() != null) {
+            this.complemento = endereco.complemento();
+        }
+        if (endereco.cidade() != null) {
+            this.cidade = endereco.cidade();
+        }
+        if (endereco.uf() != null) {
+            this.uf = endereco.uf();
+        }
     }
 }
