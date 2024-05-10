@@ -38,8 +38,6 @@ public class Paciente {
         this.ativo = true;
     }
 
-
-
     public void desativar() {
         this.ativo = false;
     }
