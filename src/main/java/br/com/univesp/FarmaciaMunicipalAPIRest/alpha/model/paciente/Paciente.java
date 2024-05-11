@@ -25,7 +25,8 @@ public class Paciente {
     private String email;
     private String telefone;
     private String cpf;
-    @Embedded
+    @ManyToOne
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
     private boolean ativo;
 
