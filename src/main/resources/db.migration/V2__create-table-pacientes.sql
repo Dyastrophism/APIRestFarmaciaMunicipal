@@ -1,17 +1,11 @@
-create table pacientes(
-    id serial4 NOT NULL,
-    nome varchar(100) not null,
-    email varchar(100) not null unique,
-    cpf varchar(14) not null unique,
-    telefone varchar(20) not null,
-    logradouro varchar(100) not null,
-    bairro varchar(100) not null,
-    cep varchar(9) not null,
-    complemento varchar(100),
-    numero varchar(20),
-    uf char(2) not null,
-    cidade varchar(100) not null,
-    ativo boolean not null default true,
-
-    primary key(id)
+CREATE TABLE pacientes
+(
+    id          SERIAL PRIMARY KEY,
+    nome        VARCHAR(100) NOT NULL,
+    email       VARCHAR(100) NOT NULL UNIQUE,
+    telefone    VARCHAR(20)  NOT NULL,
+    cpf         VARCHAR(14)  NOT NULL UNIQUE,
+    endereco_id INT,
+    ativo       BOOLEAN      NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (endereco_id) REFERENCES enderecos (id)
 );

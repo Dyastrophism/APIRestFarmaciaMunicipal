@@ -1,20 +1,12 @@
-create table medicos(
-
-                        id serial4 NOT NULL,
-                        nome varchar(100) not null,
-                        telefone varchar(20) not null,
-                        email varchar(100) not null unique,
-                        crm varchar(6) not null unique,
-                        especialidade varchar(100) not null,
-                        logradouro varchar(100) not null,
-                        bairro varchar(100) not null,
-                        cep varchar(9) not null,
-                        complemento varchar(100),
-                        numero varchar(20),
-                        uf char(2) not null,
-                        cidade varchar(100) not null,
-                        ativo boolean not null default true,
-
-                        primary key(id)
-
+CREATE TABLE medicos
+(
+    id                   SERIAL PRIMARY KEY,
+    nome                 VARCHAR(100) NOT NULL,
+    email                VARCHAR(100) NOT NULL UNIQUE,
+    crm                  VARCHAR(20)  NOT NULL UNIQUE,
+    telefone             VARCHAR(20)  NOT NULL,
+    ativo                BOOLEAN      NOT NULL DEFAULT TRUE,
+    especialidade_medico VARCHAR(50)  NOT NULL,
+    endereco_id          INT,
+    FOREIGN KEY (endereco_id) REFERENCES enderecos (id)
 );

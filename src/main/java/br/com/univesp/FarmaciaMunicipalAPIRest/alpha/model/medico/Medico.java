@@ -21,11 +21,12 @@ public class Medico {
     private String email;
     private String crm;
     private String telefone;
+    private boolean ativo;
     @Enumerated
     private EspecialidadeMedicoEnum especialidadeMedico;
-    @Embedded
+    @ManyToOne
+    @JoinColumn(name = "endereco_id")
     private Endereco enderecoMedico;
-    private boolean ativo;
 
     public Medico(DadosCadastroMedicoDTO dadosCadastroMedicoDTO) {
         this.nome = dadosCadastroMedicoDTO.nome();
@@ -48,7 +49,7 @@ public class Medico {
             this.telefone = dadosAtualizarMedicoDTO.telefone();
         }
         if (dadosAtualizarMedicoDTO.endereco() != null) {
-            this.enderecoMedico.atualizarInformacoesEndereco(dadosAtualizarMedicoDTO.endereco());
+            this.enderecoMedico = new Endereco(dadosAtualizarMedicoDTO.endereco());
         }
     }
 }

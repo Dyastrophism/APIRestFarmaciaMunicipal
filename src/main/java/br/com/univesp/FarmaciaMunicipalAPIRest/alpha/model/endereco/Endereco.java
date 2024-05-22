@@ -1,15 +1,25 @@
 package br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.endereco;
 
 import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.dto.enderecoDTO.DadosEnderecoDTO;
-import jakarta.persistence.Embeddable;
+import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.medico.Medico;
+import br.com.univesp.FarmaciaMunicipalAPIRest.alpha.model.paciente.Paciente;
+import jakarta.persistence.*;
 import lombok.*;
 
-@Embeddable
-@Data
+import java.util.List;
+
+@Entity
+@Table(name = "enderecos")
+@EqualsAndHashCode(of = "id")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String logradouro;
     private String bairro;
     private String cep;
@@ -17,6 +27,10 @@ public class Endereco {
     private String complemento;
     private String cidade;
     private String uf;
+    @OneToMany(mappedBy = "enderecoMedico")
+    private List<Medico> enderecoMedico;
+    @OneToMany(mappedBy = "enderecoPaciente")
+    private List<Paciente> enderecoPaciente;
 
     public Endereco(DadosEnderecoDTO dadosEnderecoDTO) {
         this.logradouro = dadosEnderecoDTO.logradouro();
@@ -26,29 +40,5 @@ public class Endereco {
         this.complemento = dadosEnderecoDTO.complemento();
         this.cidade = dadosEnderecoDTO.cidade();
         this.uf = dadosEnderecoDTO.uf();
-    }
-
-    public void atualizarInformacoesEndereco(DadosEnderecoDTO endereco) {
-        if (endereco.logradouro() != null) {
-            this.logradouro = endereco.logradouro();
-        }
-        if (endereco.bairro() != null) {
-            this.bairro = endereco.bairro();
-        }
-        if (endereco.cep() != null) {
-            this.cep = endereco.cep();
-        }
-        if (endereco.numero() != null) {
-            this.numero = endereco.numero();
-        }
-        if (endereco.complemento() != null) {
-            this.complemento = endereco.complemento();
-        }
-        if (endereco.cidade() != null) {
-            this.cidade = endereco.cidade();
-        }
-        if (endereco.uf() != null) {
-            this.uf = endereco.uf();
-        }
     }
 }

@@ -1,1 +1,0 @@
-UPDATE medico SET ativo = true;
